@@ -1,2 +1,2 @@
 pyTelegramBotAPI
-python-dotevn
+python-dotenv==1.2.2
