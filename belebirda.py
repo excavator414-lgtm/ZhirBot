@@ -16,6 +16,11 @@ def main(message):
     bot.send_message(message.chat.id, f'Созданный бот относится к @Katft')
 
 
+bot.message_handler(content_types=['photo'])
+def get_photo(message):
+    bot.reply_to(message, "Ага фото, круто")
+
+
 
 @bot.message_handler()
 def info(message):
