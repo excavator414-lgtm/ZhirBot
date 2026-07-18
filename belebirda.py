@@ -1,6 +1,7 @@
 import telebot
-from config import bot_token
+from config import BOT_TOKEN
 
+bot = telebot.Telebot(BOT_TOKEN)
 
 @bot.message_handler(commands=['GitHub'])
 def site(message):
