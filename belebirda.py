@@ -5,7 +5,7 @@ from config import BOT_TOKEN
 bot = telebot.TeleBot(BOT_TOKEN)
 
 
-@bot.message_handler(commands=['GitHub'])
+@bot.message_handler(commands=['github'])
 def site(message):
     bot.send_message(message.chat.id, f'GitHub создателя бота по ссылке: https://github.com/excavator414-lgtm')
 
@@ -13,7 +13,7 @@ def site(message):
 def main(message):
     bot.send_message(message.chat.id, f'Привет,{message.from_user.first_name}! Я так называемый прототип будущих ботов от @Katft!')
 
-@bot.message_handler(commands=['Help'])
+@bot.message_handler(commands=['help'])
 def main(message):
     bot.send_message(message.chat.id, f'Созданный бот относится к @Katft')
 
