@@ -5,6 +5,26 @@ from config import BOT_TOKEN
 bot = telebot.TeleBot(BOT_TOKEN)
 
 
+
+@bot.message_handler(content_types=['photo'])
+def get_photo(message):
+    markup = types.InlineKeyboardMarkup()
+    btn1 = types.InlineKeyboardButton('Съесть фото', callback_data='delete')
+    markup.row(btn1)
+    btn2 = types.InlineKeyboardButton('Изменить текст', callback_data='edit')
+    markup.row(btn2)
+    bot.send_message(message, 'Ага фото, круто', reply_markup=markup)
+
+
+
+@bot.callback_query_handler(func=lambda callback: True)
+def callback_message(callback):
+    if callback.data == 'delete':
+        bot.delete_message(callback.message.chat.id, callback.message.message_id - 1)
+    elif callback.data == 'edit':
+        bot.edit_message_text('Текст изменён вроде', callback.message.chat.id, callback.message.message_id)
+
+
 @bot.message_handler(commands=['github'])
 def site(message):
     bot.send_message(message.chat.id, f'GitHub создателя бота по ссылке: https://github.com/excavator414-lgtm')
@@ -17,27 +37,6 @@ def main(message):
 def main(message):
     bot.send_message(message.chat.id, f'Созданный бот относится к @Katft')
 
-
-# отправка фотографий под вопросом
-@bot.message_handler(content_types=['photo'])
-def get_photo(message):
-    markup = types.InlineKeyboardMarkup()
-    btn1 = types.InlineKeyboardButton('Съесть фото', callback_data='delete')
-    markup.row(btn1)
-    btn2 = types.InlineKeyboardButton('Изменить текст', callback_data='edit')
-    markup.row(btn2)
-    bot.reply_to(message, 'Ага фото, круто', reply_markup=markup)
-
-
-
-@bot.callback_query_handler(func=lambda callback: True)
-def callback_message(callback):
-    if callback.data == 'delete':
-        bot.delete_message(callback.message.chat.id, callback.message.message_id - 1)
-    elif callback.data == 'edit':
-        bot.edit_message_text('Текст изменён вроде', callback.message.chat.id, callback.message.message_id)
-
-# отправка фотографий под вопросом
 
 
 @bot.message_handler()
