@@ -19,7 +19,7 @@ def main(message):
 
 
 # отправка фотографий под вопросом
-bot.message_handler(content_types=['photo'])
+@bot.message_handler(content_types=['photo'])
 def get_photo(message):
     markup = types.InlineKeyboardMarkup()
     btn1 = types.InlineKeyboardButton('Съесть фото', callback_data='delete')
