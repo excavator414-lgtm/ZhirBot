@@ -18,19 +18,21 @@ def main(message):
     bot.send_message(message.chat.id, f'Созданный бот относится к @Katft')
 
 
+# отправка фотографий под вопросом
 bot.message_handler(content_types=['photo'])
 def get_photo(message):
     markup = types.InlineKeyboardMarkup()
-    btn1 = types.InlineKeyboardMarkup('Съесть фото', callback_data='delete')
+    btn1 = types.InlineKeyboardButton('Съесть фото', callback_data='delete')
     markup.row(btn1)
-
-    markup.add(types.InlineKeyboardMarkup('Съесть фото', callback_data='delete'))
     bot.reply_to(message, "Ага фото, круто", reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda callback:True)
 def callback_message(callback):
     if callback.data == "delete":
-        bot.delete_message(callback.message.chat.id, callback.message.message_id -1)
+        bot.delete_message(callback.message.chat.id, callback.message.message_id)
+        bot.delete_message(callback.message.chat.id, callback.message.reply_to_message.message_id)
+# отправка фотографий под вопросом
+
 
 @bot.message_handler()
 def info(message):
