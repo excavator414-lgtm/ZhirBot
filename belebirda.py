@@ -46,11 +46,10 @@ def info(message):
     elif message.text.lower() == 'id':
         bot.reply_to(message, f'Ваш ID: {message.from_user.id}')
 
-@bot.message_handler(content_types=['photo'])
+@bot.message_handler(commands=['photo'])
 def photo(message):
     file = open('./i.wepb', 'rb')
-    if message.text.lower() == 'дай фото':
-        bot.send_photo(message.chat.id, file)
+    bot.send_photo(message.chat.id, file)
     
 
 
