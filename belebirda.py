@@ -11,10 +11,9 @@ bot = telebot.TeleBot(BOT_TOKEN)
 def get_photo(message):
     markup = types.InlineKeyboardMarkup()
     btn1 = types.InlineKeyboardButton('Съесть фото', callback_data='delete')
-    markup.row(btn1)
+    markup.add(btn1)
     btn2 = types.InlineKeyboardButton('Изменить текст', callback_data='edit')
-
-    markup.row(btn2)
+    markup.add(btn2)
     bot.send_message(message, 'Ага фото, круто', reply_markup=markup)
 
 
@@ -25,7 +24,7 @@ def callback_message(callback):
         bot.delete_message(callback.message.chat.id, callback.message.message_id - 1)
     elif callback.data == 'edit':
         bot.edit_message_text('Текст изменён вроде', callback.message.chat.id, callback.message.message_id)
-        
+
 
 
 @bot.message_handler(commands=['github'])
