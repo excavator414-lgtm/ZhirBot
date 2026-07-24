@@ -13,7 +13,7 @@ def get_photo(message):
     btn1 = types.InlineKeyboardButton('Съесть фото', callback_data='delete')
     markup.row(btn1)
     btn2 = types.InlineKeyboardButton('Изменить текст', callback_data='edit')
-   # btn3 = types.InlineKeyboardButton('Фото с голубем', callback_data='golub')
+
     markup.row(btn2)
     bot.send_message(message, 'Ага фото, круто', reply_markup=markup)
 
@@ -25,9 +25,7 @@ def callback_message(callback):
         bot.delete_message(callback.message.chat.id, callback.message.message_id - 1)
     elif callback.data == 'edit':
         bot.edit_message_text('Текст изменён вроде', callback.message.chat.id, callback.message.message_id)
-  #  elif callback.data == 'golub':
-     # file = open('./photo.jpeg')
-   #  bot.send_photo(file, callback.message.chat.id)
+        
 
 
 @bot.message_handler(commands=['github'])
