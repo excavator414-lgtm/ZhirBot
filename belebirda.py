@@ -6,6 +6,7 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 
 
+
 @bot.message_handler(content_types=['photo'])
 def get_photo(message):
     markup = types.InlineKeyboardMarkup()
@@ -46,10 +47,7 @@ def info(message):
     elif message.text.lower() == 'id':
         bot.reply_to(message, f'Ваш ID: {message.from_user.id}')
 
-@bot.message_handler(commands=['photo'])
-def photo(message):
-    file = open('./i.wepb', 'rb')
-    bot.send_photo(message.chat.id, file)
+
     
 
 
