@@ -48,7 +48,10 @@ def info(message):
         bot.reply_to(message, f'Ваш ID: {message.from_user.id}')
 
 
-    
+@bot.message_handler(commands=['photo'])
+def photo(message):
+    file = open('./photo.webp', 'rb')
+    bot.send_photo(message.chat.id, file)
 
 
 bot.infinity_polling()
