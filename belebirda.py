@@ -14,7 +14,7 @@ def get_photo(message):
     markup.add(btn1)
     btn2 = types.InlineKeyboardButton('Изменить текст', callback_data='edit')
     markup.add(btn2)
-    bot.send_message(message, 'Ага фото, круто', reply_markup=markup)
+    bot.send_message(message.chat.id, 'Ага фото, круто', reply_markup=markup)
 
 
 
