@@ -5,6 +5,10 @@ from config import BOT_TOKEN
 bot = telebot.TeleBot(BOT_TOKEN)
 
 
+@bot.message_handler(commands=['photo'])
+def smeshinka(message):
+    with open('photo.jpeg', 'rb') as photo:
+        bot.send_photo(message.chat.id, photo, caption='Смешное фото голубь')
 
 
 @bot.message_handler(content_types=['photo'])
