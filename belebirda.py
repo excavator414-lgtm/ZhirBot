@@ -5,6 +5,21 @@ from config import BOT_TOKEN
 bot = telebot.TeleBot(BOT_TOKEN)
 
 
+
+
+bot.message_handler(commands=['info'])
+def info(message):
+    bot.send_message(message.chat.id, """Привет дружище👋
+    👁Данный бот был изобретён @katft в качестве проекта👁
+    Вот вся информация про бота:
+    Команда '/start' обозначает приветсвие, либо же просто написав 'привет'
+    Написав 'id' вы получите свой айди телеграма
+    Команда '/github' вы получите ГитХаб создателя
+    Команда '/photo' высылает вам фото
+
+    Если вы хотите скинуть фото то вас встретит первая кнопка и вторая
+    Первая кнопка удалит фото, а вторая изменит текст
+    """) 
 @bot.message_handler(commands=['photo'])
 def smeshinka(message):
     with open('photo.jpeg', 'rb') as photo:
@@ -38,11 +53,6 @@ def site(message):
 @bot.message_handler(commands=['start', 'Hello'])
 def main(message):
     bot.send_message(message.chat.id, f'Привет,{message.from_user.first_name}! Я так называемый прототип будущих ботов от @Katft!')
-
-@bot.message_handler(commands=['help'])
-def main(message):
-    bot.send_message(message.chat.id, f'Созданный бот относится к @Katft')
-
 
 
 @bot.message_handler()
