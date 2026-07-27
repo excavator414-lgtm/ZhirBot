@@ -7,7 +7,7 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 
 
-bot.message_handler(commands=['info'])
+@bot.message_handler(commands=['info'])
 def info(message):
     bot.send_message(message.chat.id, """Привет дружище👋
     👁Данный бот был изобретён @katft в качестве проекта👁
@@ -20,6 +20,8 @@ def info(message):
     Если вы хотите скинуть фото то вас встретит первая кнопка и вторая
     Первая кнопка удалит фото, а вторая изменит текст
     """) 
+
+
 @bot.message_handler(commands=['photo'])
 def smeshinka(message):
     with open('photo.jpeg', 'rb') as photo:
